@@ -4,6 +4,7 @@ include("hw01-gradle")
 include("hw04-generics")
 include("hw06-annotations")
 include("hw10-byteCode")
+include("hw16-io")
 
 includeBuild("logging-proxy-gradle-plugin")
 
