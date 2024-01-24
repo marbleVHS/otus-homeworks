@@ -4,7 +4,11 @@ include("hw01-gradle")
 include("hw04-generics")
 include("hw06-annotations")
 include("hw10-byteCode")
+include("hw16-io")
+include("hw18-jdbc:demo")
+include("hw18-jdbc:homework")
 include("hw21-jpql")
+include("hw24-webServer")
 
 includeBuild("logging-proxy-gradle-plugin")
 
