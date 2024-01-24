@@ -50,21 +50,6 @@ public class ClientsServlet extends HttpServlet {
 
         response.setContentType("text/html");
         response.getWriter().println(templateProcessor.getPage(CLIENTS_PAGE_TEMPLATE, paramsMap));
-
-//        List.of(
-//                new Client(
-//                        1L,
-//                        "Josh",
-//                        new Address(1L, "street1"),
-//                        List.of(new Phone(1L, "number"))
-//                ),
-//                new Client(
-//                        2L,
-//                        "Brian",
-//                        new Address(2L, "street2"),
-//                        List.of(new Phone(2L, "number2"))
-//                )
-//        );
     }
 
     @Override
