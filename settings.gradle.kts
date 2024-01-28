@@ -10,6 +10,7 @@ include("hw18-jdbc:homework")
 include("hw21-jpql")
 include("hw22-cache")
 include("hw24-webServer")
+include("hw31-executors")
 
 includeBuild("logging-proxy-gradle-plugin")
 
