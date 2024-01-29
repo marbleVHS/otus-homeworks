@@ -10,6 +10,8 @@ include("hw18-jdbc:homework")
 include("hw21-jpql")
 include("hw22-cache")
 include("hw24-webServer")
+include("hw25-di")
+include("hw28-springDataJdbc")
 include("hw31-executors")
 
 includeBuild("logging-proxy-gradle-plugin")
@@ -34,4 +36,8 @@ pluginManagement {
         id("name.remal.sonarlint") version sonarlint
         id("com.diffplug.spotless") version spotless
     }
+}
+
+plugins {
+    id("org.gradle.toolchains.foojay-resolver-convention") version "0.5.0"
 }
