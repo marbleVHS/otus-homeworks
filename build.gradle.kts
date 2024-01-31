@@ -21,6 +21,7 @@ idea {
     }
 }
 
+val grpc: String by project
 
 allprojects {
     group = "ru.otus"
@@ -44,6 +45,9 @@ allprojects {
                 mavenBom("com.google.protobuf:protobuf-bom:$protobufBom")
             }
             dependency("com.google.guava:guava:$guava")
+            dependency("io.grpc:grpc-netty:$grpc")
+            dependency("io.grpc:grpc-protobuf:$grpc")
+            dependency("io.grpc:grpc-stub:$grpc")
         }
     }
 
