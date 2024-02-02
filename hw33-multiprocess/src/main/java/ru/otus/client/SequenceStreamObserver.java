@@ -5,23 +5,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ru.otus.protobuf.SequenceMember;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 public class SequenceStreamObserver implements StreamObserver<SequenceMember> {
     private static final Logger LOGGER = LoggerFactory.getLogger(SequenceStreamObserver.class);
 
-    private int lastValueFromService = 0;
+    private final AtomicInteger lastValueFromService = new AtomicInteger(0);
 
     public int getLastValueFromService() {
-        return lastValueFromService;
+        return lastValueFromService.get();
     }
 
     public void setLastValueFromService(int value) {
-        this.lastValueFromService = value;
+        this.lastValueFromService.set(value);
     }
 
     @Override
     public void onNext(SequenceMember sequenceMember) {
         int member = sequenceMember.getMember();
-        lastValueFromService = member;
+        lastValueFromService.set(member);
         LOGGER.info("new value: {}", member);
     }
 
