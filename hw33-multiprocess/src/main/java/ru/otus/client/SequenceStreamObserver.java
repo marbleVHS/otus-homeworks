@@ -12,12 +12,8 @@ public class SequenceStreamObserver implements StreamObserver<SequenceMember> {
 
     private final AtomicInteger lastValueFromService = new AtomicInteger(0);
 
-    public int getLastValueFromService() {
-        return lastValueFromService.get();
-    }
-
-    public void setLastValueFromService(int value) {
-        this.lastValueFromService.set(value);
+    public int getAndSetLastValueFromService(int newValue) {
+        return lastValueFromService.getAndSet(newValue);
     }
 
     @Override

@@ -28,8 +28,7 @@ public class GRPCClient {
         int currentValue = 0;
 
         for (int i = 0; i <= 50; i++) {
-            currentValue = currentValue + 1 + responseObserver.getLastValueFromService();
-            responseObserver.setLastValueFromService(0);
+            currentValue = currentValue + 1 + responseObserver.getAndSetLastValueFromService(0);
             LOGGER.info("currentValue: {}", currentValue);
             Thread.sleep(1000L);
         }
