@@ -20,6 +20,7 @@ import ru.petrelevich.domain.Message;
 @Controller
 public class MessageController {
     private static final Logger logger = LoggerFactory.getLogger(MessageController.class);
+    private static final String SPECIAL_ROOM_ID = "1408";
 
     private static final String TOPIC_TEMPLATE = "/topic/response.";
 
@@ -33,11 +34,16 @@ public class MessageController {
 
     @MessageMapping("/message.{roomId}")
     public void getMessage(@DestinationVariable String roomId, Message message) {
+        if (roomId.equals(SPECIAL_ROOM_ID)) {
+            throw new IllegalArgumentException("You can't send messages from special room");
+        }
         logger.info("get message:{}, roomId:{}", message, roomId);
         saveMessage(roomId, message).subscribe(msgId -> logger.info("message send id:{}", msgId));
 
         template.convertAndSend(
                 String.format("%s%s", TOPIC_TEMPLATE, roomId), new Message(HtmlUtils.htmlEscape(message.messageStr())));
+        template.convertAndSend(
+                String.format("%s%s", TOPIC_TEMPLATE, SPECIAL_ROOM_ID), new Message(HtmlUtils.htmlEscape(message.messageStr())));
     }
 
     @EventListener

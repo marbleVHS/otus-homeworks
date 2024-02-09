@@ -3,6 +3,7 @@ let stompClient = null;
 const chatLineElementId = "chatLine";
 const roomIdElementId = "roomId";
 const messageElementId = "message";
+const sendBlockElementId = "sendBlock";
 
 
 const setConnected = (connected) => {
@@ -21,6 +22,11 @@ const connect = () => {
         setConnected(true);
         const userName = frame.headers["user-name"];
         const roomId = document.getElementById(roomIdElementId).value;
+        if (roomId.toString() === "1408") {
+            hideSendBlock()
+        } else {
+            showSendBlock()
+        }
         console.log(`Connected to roomId: ${roomId} frame:${frame}`);
         const topicName = `/topic/response.${roomId}`;
         const topicNameUser = `/user/${userName}${topicName}`;
@@ -34,6 +40,7 @@ const disconnect = () => {
         stompClient.disconnect();
     }
     setConnected(false);
+    hideSendBlock()
     console.log("Disconnected");
 }
 
@@ -41,6 +48,16 @@ const sendMsg = () => {
     const roomId = document.getElementById(roomIdElementId).value;
     const message = document.getElementById(messageElementId).value;
     stompClient.send(`/app/message.${roomId}`, {}, JSON.stringify({'messageStr': message}))
+}
+
+const showSendBlock = () => {
+    const sendBlock = document.getElementById(sendBlockElementId);
+    sendBlock.hidden = false;
+}
+
+const hideSendBlock = () => {
+    const sendBlock = document.getElementById(sendBlockElementId);
+    sendBlock.hidden = true;
 }
 
 const showMessage = (message) => {

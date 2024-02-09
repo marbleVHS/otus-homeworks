@@ -19,30 +19,35 @@
             <input type="text" id="roomId" class="form-control" placeholder="chat room Id">
         </div>
         <div class="col-1">
-            <button id="connect" class="btn btn-default" onclick="connect()">Connect</button>
+            <button id="connect" class="btn btn-default" onclick="connect()">
+                Connect
+            </button>
         </div>
         <div class="col-1">
-            <button id="disconnect" class="btn btn-default" onclick="disconnect()" disabled="disabled">Disconnect</button>
+            <button id="disconnect" class="btn btn-default" onclick="disconnect()" disabled="disabled">
+                Disconnect
+            </button>
         </div>
         <div class="col-8">
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <label for="message">Message</label>
+    <div id="sendBlock" hidden="hidden">
+        <div class="row">
+            <div class="col">
+                <label for="message">Message</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <input type="text" id="message" class="form-control" placeholder="type a message...">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button id="send" class="btn btn-default" onclick="sendMsg()">Send</button>
+            </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <input type="text" id="message" class="form-control" placeholder="type a message...">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col">
-            <button id="send" class="btn btn-default" onclick="sendMsg()">Send</button>
-        </div>
-    </div>
-
     <div class="row">
         <div class="col-12">
             <table id="conversation" class="table table-striped">

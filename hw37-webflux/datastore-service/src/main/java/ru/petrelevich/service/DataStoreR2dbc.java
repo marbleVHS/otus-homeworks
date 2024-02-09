@@ -1,8 +1,5 @@
 package ru.petrelevich.service;
 
-import static java.time.temporal.ChronoUnit.SECONDS;
-
-import java.time.Duration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -12,9 +9,15 @@ import reactor.core.scheduler.Scheduler;
 import ru.petrelevich.domain.Message;
 import ru.petrelevich.repository.MessageRepository;
 
+import java.time.Duration;
+
+import static java.time.temporal.ChronoUnit.MILLIS;
+
 @Service
 public class DataStoreR2dbc implements DataStore {
     private static final Logger log = LoggerFactory.getLogger(DataStoreR2dbc.class);
+    private static final String SPECIAL_ROOM_ID = "1408";
+
     private final MessageRepository messageRepository;
     private final Scheduler workerPool;
 
@@ -32,6 +35,10 @@ public class DataStoreR2dbc implements DataStore {
     @Override
     public Flux<Message> loadMessages(String roomId) {
         log.info("loadMessages roomId:{}", roomId);
-        return messageRepository.findByRoomId(roomId).delayElements(Duration.of(3, SECONDS), workerPool);
+        if (roomId.equals(SPECIAL_ROOM_ID)) {
+            return messageRepository.findAllMessages().delayElements(Duration.of(500, MILLIS), workerPool);
+        }
+        return messageRepository.findByRoomId(roomId).delayElements(Duration.of(500, MILLIS), workerPool);
     }
+
 }
