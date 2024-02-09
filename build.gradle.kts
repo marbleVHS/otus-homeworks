@@ -33,7 +33,10 @@ allprojects {
     val testcontainersBom: String by project
     val protobufBom: String by project
     val guava: String by project
-
+    val sockjs: String by project
+    val stomp: String by project
+    val bootstrap: String by project
+    val r2dbcPostgresql: String by project
 
     apply(plugin = "io.spring.dependency-management")
     dependencyManagement {
@@ -44,6 +47,10 @@ allprojects {
                 mavenBom("com.google.protobuf:protobuf-bom:$protobufBom")
             }
             dependency("com.google.guava:guava:$guava")
+            dependency("org.webjars:sockjs-client:$sockjs")
+            dependency("org.webjars:stomp-websocket:$stomp")
+            dependency("org.webjars:bootstrap:$bootstrap")
+            dependency("io.r2dbc:r2dbc-postgresql:$r2dbcPostgresql")
         }
     }
 
