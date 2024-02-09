@@ -14,6 +14,8 @@ include("hw25-di")
 include("hw28-springDataJdbc")
 include("hw31-executors")
 include("hw32-concurrentCollections")
+include("hw37-webflux:client-service")
+include("hw37-webflux:datastore-service")
 
 includeBuild("logging-proxy-gradle-plugin")
 
